@@ -326,7 +326,13 @@ public class MongoDBWriter extends Writer{
                 this.mongoClient = MongoUtil.initMongoClient(this.writerSliceConfig);
             }
             this.collection = writerSliceConfig.getString(KeyConstant.MONGO_COLLECTION_NAME);
-            this.batchSize = BATCH_SIZE;
+            String batchSize = writerSliceConfig.getString(KeyConstant.BATCH_SIZE);
+            if(!Strings.isNullOrEmpty(batchSize) && !Strings.isNullOrEmpty(batchSize)) {
+                this.batchSize = BATCH_SIZE;
+            } else {
+                this.batchSize = Integer.valueOf(batchSize);
+            }
+            //            this.batchSize = BATCH_SIZE;
             this.mongodbColumnMeta = JSON.parseArray(writerSliceConfig.getString(KeyConstant.MONGO_COLUMN));
             this.writeMode = JSON.parseObject(writerSliceConfig.getString(KeyConstant.WRITE_MODE));
         }

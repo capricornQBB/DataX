@@ -61,6 +61,12 @@ public class KeyConstant {
      * 指定用来判断是否覆盖的 业务主键
      */
     public static final String UNIQUE_KEY = "replaceKey";
+
+    /**
+     * 指定mongo批量操作大小
+     */
+    public static final String BATCH_SIZE = "batchSize";
+
     /**
      * 判断是否为数组类型
      * @param type 数据类型
